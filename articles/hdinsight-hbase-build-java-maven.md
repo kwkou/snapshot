@@ -14,7 +14,7 @@ Learn how to create and build an [Apache HBase](http://hbase.apache.org/) applic
 
 * [Maven](http://maven.apache.org/)
 
-* [An Azure HDInsight cluster with HBase](/en-us/documentation/articles/hdinsight-hbase-get-started/#create-hbase-cluster)
+* [An Azure HDInsight cluster with HBase](/zh-cn/documentation/articles/hdinsight-hbase-get-started/#create-hbase-cluster)
 
 ##Create the project
 
@@ -116,19 +116,23 @@ Learn how to create and build an [Apache HBase](http://hbase.apache.org/) applic
 		 */
 		-->
 		<configuration>
+		  <property>
 		    <name>hbase.cluster.distributed</name>
 		    <value>true</value>
 		  </property>
 		  <property>
 		    <name>hbase.zookeeper.quorum</name>
-		    <value>zookeepernode0:2181 zookeepernode1:2181 zookeepernode2:2181</value>
+		    <value>zookeeper0,zookeeper1,zookeeper2</value>
 		  </property>
-		
+		  <property>
+		    <name>hbase.zookeeper.property.clientPort</name>
+		    <value>2181</value>
+		  </property>
 		</configuration>
 
 	This file will be used to load the HBase configuration for an HDInsight cluster.
 
-	> [WACOM.NOTE] This is a very minimal hbase-site.xml file, containing the bare minimum settings for the HDInsight cluster. For a full version of the hbase-site.xml configuration file used by HDInsight, [remote desktop into the HDInsight cluster](http://azure.microsoft.com/en-us/documentation/articles/hdinsight-administer-use-management-portal/#rdp), and the hbase-site.xml file is located in the C:\apps\dist\hbase-&lt;version number>-hadoop2\conf directory. The version number portion of the file path will change as HBase is updated on the cluster.
+	> [WACOM.NOTE] This is a very minimal hbase-site.xml file, containing the bare minimum settings for the HDInsight cluster. For a full version of the hbase-site.xml configuration file used by HDInsight, [remote desktop into the HDInsight cluster](http://www.windowsazure.cn/zh-cn/documentation/articles/hdinsight-administer-use-management-portal/#rdp), and the hbase-site.xml file is located in the C:\apps\dist\hbase-&lt;version number>-hadoop2\conf directory. The version number portion of the file path will change as HBase is updated on the cluster.
 
 3. Save the __hbase-site.xml__ file.
 
@@ -323,9 +327,9 @@ Learn how to create and build an [Apache HBase](http://hbase.apache.org/) applic
 
 ##Upload the JAR and start a job
 
-> [WACOM.NOTE] There are many ways to upload a file to your HDInsight cluster, as described in [Upload data for Hadoop jobs in HDInsight](/en-us/documentation/articles/hdinsight-upload-data/). The steps below use [Azure PowerShell](/en-us/documentation/articles/install-configure-powershell/).
+> [WACOM.NOTE] There are many ways to upload a file to your HDInsight cluster, as described in [Upload data for Hadoop jobs in HDInsight](/zh-cn/documentation/articles/hdinsight-upload-data/). The steps below use [Azure PowerShell](/zh-cn/documentation/articles/install-configure-powershell/).
 
-1. After installing and configuring [Azure PowerShell](/en-us/documentation/articles/install-configure-powershell/), create a new file named __hbase-runner.psm1__. Use the following as the contents of this file.
+1. After installing and configuring [Azure PowerShell](/zh-cn/documentation/articles/install-configure-powershell/), create a new file named __hbase-runner.psm1__. Use the following as the contents of this file.
 
 		<#
 		.SYNOPSIS
@@ -456,7 +460,7 @@ Learn how to create and build an [Apache HBase](http://hbase.apache.org/) applic
 		    # Is the Azure module installed?
 		    if (-not(Get-Module -ListAvailable Azure))
 		    {
-		        throw "Windows Azure PowerShell not found! For help, see http://www.windowsazure.com/en-us/documentation/articles/install-configure-powershell/"
+		        throw "Windows Azure PowerShell not found! For help, see http://www.windowsazure.com/zh-cn/documentation/articles/install-configure-powershell/"
 		    }
 		
 		    # Is there an active Azure subscription?
